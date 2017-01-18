@@ -12,7 +12,8 @@ return [
         'posts' => [
             'name' => 'Bài viết',
             'modules' => [
-
+               'index_slider' => 'Index Slider',
+                'right_feature' => 'Nổi bật Chuyên mục'
             ]
         ],
 

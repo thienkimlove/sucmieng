@@ -39,24 +39,24 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('content_tab1', 'Thông tin sản phẩm') !!}
+                {!! Form::label('content', 'Thành phần') !!}
+                {!! Form::textarea('content', null, ['class' => 'form-control ckeditor']) !!}
+            </div>
+
+            <div class="form-group">
+                {!! Form::label('content_tab1', 'Vì sao nên chọn sản phẩm') !!}
                 {!! Form::textarea('content_tab1', null, ['class' => 'form-control ckeditor']) !!}
             </div>
 
             <div class="form-group">
-                {!! Form::label('content_tab2', 'NHẬN BIẾT BAO BÌ') !!}
+                {!! Form::label('content_tab2', 'câu hỏi thường gặp') !!}
                 {!! Form::textarea('content_tab2', null, ['class' => 'form-control ckeditor']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('content_tab3', 'Hướng dẫn sử dụng') !!}
-                {!! Form::textarea('content_tab3', null, ['class' => 'form-control ckeditor']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('image', 'Image') !!}
                 @if ($content->image)
-                    <img src="{{url('img/cache/120x120/' . $content->image)}}" />
+                    <img src="{{url('img/cache/small/' . $content->image)}}" />
                     <hr>
                 @endif
                 {!! Form::file('image', null, ['class' => 'form-control']) !!}

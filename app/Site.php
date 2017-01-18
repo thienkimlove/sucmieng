@@ -34,4 +34,75 @@ class Site
     {
         return array(0 => 'Chọn vị trí') + Position::pluck('name', 'id')->all();
     }
+
+    #Frontend
+
+    public static function getSubCategories($cateSlug)
+    {
+        return Category::findBySlug($cateSlug);
+    }
+
+    public static function getFrontendBanners()
+    {
+        return Banner::all();
+    }
+
+    public static function getLatestIndexPosts()
+    {
+        return Post::where('status', true)->latest('created_at')->limit(3)->get();
+    }
+
+    public static function getLatestQuestions()
+    {
+        return Question::where('status', true)->latest('created_at')->limit(3)->get();
+    }
+
+    public static function getRightIndexVideos()
+    {
+        return Video::where('status', true)->latest('created_at')->limit(4)->get();
+    }
+
+    public static function getRightFeaturePosts($page)
+    {
+        if (in_array($page, ['index', 'lien-he', 'video', 'hoi-dap', 'phan-phoi','san-pham', 'tu-khoa'])) {
+            $category = Category::findBySlug('tin-tuc');
+        } else {
+            $category = Category::findBySlug($page);
+        }
+
+        $rightFeatureModules = Module::where('key_type', 'right_feature')->where('key_content', 'posts')->pluck('key_value')->all();
+
+        if ($category->subCategories->count() == 0) {
+            return Post::where('status', true)
+                ->where('category_id', $category->id)
+                ->whereIn('id', $rightFeatureModules)
+                ->latest('created_at')
+                ->limit(4)
+                ->get();
+        } else {
+            return Post::where('status', true)
+                ->whereIn('category_id', $category->subCategories->pluck('id')->all())
+                ->whereIn('id', $rightFeatureModules)
+                ->latest('created_at')
+                ->limit(4)
+                ->get();
+        }
+    }
+    public static function getLatestNews()
+    {
+        $category = Category::findBySlug('tin-tuc');
+        if ($category->subCategories->count() == 0) {
+            return Post::where('status', true)
+                ->where('category_id', $category->id)
+                ->latest('created_at')
+                ->limit(4)
+                ->get();
+        } else {
+            return Post::where('status', true)
+                ->whereIn('category_id', $category->subCategories->pluck('id')->all())
+                ->latest('created_at')
+                ->limit(4)
+                ->get();
+        }
+    }
 }

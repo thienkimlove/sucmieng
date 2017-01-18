@@ -90,6 +90,28 @@ return array(
         '103x103' => function($image) {
             return $image->fit(103, 103);
         },
+        '274x174' => function($image) {
+            return $image->fit(274, 174);
+        },
+        '257x171' => function($image) {
+            return $image->fit(257, 171);
+        },
+        '320x180' => function($image) {
+            return $image->fit(320, 180);
+        },
+
+        '100x80' => function($image) {
+            return $image->fit(100, 80);
+        },
+        '188x125' => function($image) {
+            return $image->fit(188, 125);
+        },
+        '120x120' => function($image) {
+            return $image->fit(120, 120);
+        },
+        '303x130' => function($image) {
+            return $image->fit(303, 130);
+        },
     ),
 
     /*

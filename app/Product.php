@@ -30,7 +30,10 @@ class Product extends Model
         'content',
         'image',
         'views',
-        'status'
+        'status',
+
+        'content_tab1',
+        'content_tab2'
     ];
 
     public function tags()

@@ -14,4 +14,11 @@ Route::resource('admin/modules', 'ModulesController');
 
 #Frontend Routes
 Route::get('/', 'FrontendController@index');
+Route::get('lien-he', 'FrontendController@contact');
+Route::get('san-pham', 'FrontendController@product');
+Route::get('hoi-dap/{value?}', 'FrontendController@question');
+Route::get('video/{value?}', 'FrontendController@video');
+Route::get('phan-phoi/{value?}', 'FrontendController@delivery');
+Route::get('tu-khoa/{value?}', 'FrontendController@tag');
+Route::post('saveContact', 'FrontendController@saveContact');
 Route::get('{value}', 'FrontendController@main');

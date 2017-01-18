@@ -3,11 +3,13 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use Sluggable;
+    use SluggableScopeHelpers;
 
     public function sluggable()
     {
@@ -86,7 +88,7 @@ class Post extends Model
 
         $post_tag = $this->tags->pluck('id');
 
-        $relatedPosts = Post::publish()
+        $relatedPosts = Post::where('status', true)
             ->whereHas('tags', function($q) use ($post_tag){
                 $q->whereIn('id', $post_tag);
             })

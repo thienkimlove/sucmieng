@@ -3,11 +3,13 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
     use Sluggable;
+    use SluggableScopeHelpers;
 
     public function sluggable()
     {
