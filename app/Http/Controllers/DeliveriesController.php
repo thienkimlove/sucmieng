@@ -11,7 +11,7 @@ class DeliveriesController extends AdminController
     public $model = 'deliveries';
 
     public $validator = [
-        'title' => 'required'
+
     ];
 
     private function init()
@@ -23,7 +23,7 @@ class DeliveriesController extends AdminController
     {
         $modelClass = $this->init();
         $searchKeyword = null;
-        $contents = $modelClass::latest('created_at');
+        $contents = $modelClass::latest('id');
 
         if ($request->input('q')) {
             $searchKeyword = urldecode($request->input('q'));

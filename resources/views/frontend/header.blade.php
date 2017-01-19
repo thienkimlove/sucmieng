@@ -26,7 +26,7 @@
                     @endforeach
                 </ul>
             </li>
-            <li><a href="{{url('video')}}" class="{{(isset($page) && $page == 'video') ? 'active' : ''}}">Videos</a></li>
+            <li><a href="{{url('video')}}" class="{{(isset($page) && $page == 'video') ? 'active' : ''}}">Video</a></li>
             <li><a href="{{url('hoi-dap')}}" class="{{(isset($page) && $page == 'hoi-dap') ? 'active' : ''}}">Hỏi đáp</a></li>
             <li><a href="{{url('phan-phoi')}}" class="{{(isset($page) && $page == 'phan-phoi') ? 'active' : ''}}">Phân phối</a></li>
             <li><a href="{{url('lien-he')}}" class="{{(isset($page) && $page == 'lien-he') ? 'active' : ''}}">Liên hệ</a></li>

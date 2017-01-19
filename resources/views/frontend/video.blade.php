@@ -15,7 +15,7 @@
                     @if ($mainVideo)
                     <div class="hotVideo clearFix">
                         <div class="thumbVideo">
-                            <iframe width="100%" height="315" src="{{$mainVideo->url}}" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="100%" height="315" src="{{$mainVideo->link}}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                     @endif

@@ -10,7 +10,7 @@
         <div class="content">
             @if ($firstVideo = $rightIndexVideos->shift())
             <div class="video-wrapper">
-                <iframe width="100%" height="160" src="{{$firstVideo->url}}" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="160" src="{{$firstVideo->link}}" frameborder="0" allowfullscreen></iframe>
             </div>
             @endif
             @if ($rightIndexVideos->count() > 0)

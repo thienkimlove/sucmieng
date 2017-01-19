@@ -146,7 +146,9 @@ class FrontendController extends Controller
 
             $page = $mainPost->category->slug;
 
-            return view('frontend.post', compact('mainPost', 'page'))->with($this->generateMeta('post', [
+            $detail = 1;
+
+            return view('frontend.post', compact('mainPost', 'page', 'detail'))->with($this->generateMeta('post', [
                 'title' => ($mainPost->seo_title) ? $mainPost->seo_title : $mainPost->title,
                 'desc' => $mainPost->desc,
                 'keywords' => ($mainPost->tagList) ? implode(',', $mainPost->tagList) : null,
@@ -192,15 +194,17 @@ class FrontendController extends Controller
         $mainQuestion = null;
         $meta_title = $meta_desc = $meta_keywords = null;
         $view = 'question';
+        $detail = null;
         if ($value) {
             $mainQuestion = Question::findBySlug($value);
             $meta_title = ($mainQuestion->seo_title) ? $mainQuestion->seo_title : $mainQuestion->title;
             $meta_desc = $mainQuestion->desc;
             $meta_keywords = $mainQuestion->keywords;
             $view = 'question_detail';
+            $detail = 1;
         }
         $questions = Question::where('status', true)->paginate(10);
-        return view('frontend.'.$view, compact('questions', 'mainQuestion', 'page'))->with($this->generateMeta('hoi-dap', [
+        return view('frontend.'.$view, compact('questions', 'mainQuestion', 'page', 'detail'))->with($this->generateMeta('hoi-dap', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,
@@ -217,8 +221,9 @@ class FrontendController extends Controller
             $meta_title = $delivery->seo_title;
             $meta_desc = $delivery->desc;
             $meta_keywords = $delivery->keywords;
+            $detail = 1;
 
-            return view('frontend.detail_delivery', compact('delivery', 'page'))->with($this->generateMeta('phan-phoi', [
+            return view('frontend.detail_delivery', compact('delivery', 'page', 'detail'))->with($this->generateMeta('phan-phoi', [
                 'title' => $meta_title,
                 'desc' => $meta_desc,
                 'keywords' => $meta_keywords,
@@ -259,9 +264,8 @@ class FrontendController extends Controller
         $meta_title = $meta_desc = $meta_keywords = null;
         $videos = Video::paginate(6);
 
-        if ($videos->count() > 0) {
-            $mainVideo = $videos->first();
-        }
+        $detail = null;
+
 
         if ($value) {
             $mainVideo = Video::findBySlug($value);
@@ -269,9 +273,11 @@ class FrontendController extends Controller
             $meta_desc = $mainVideo->desc;
             $meta_keywords = $mainVideo->keywords;
             $mainVideo->increment('views', 1);
+            $detail = 1;
         }
 
-        return view('frontend.video', compact('videos', 'mainVideo', 'page'))->with($this->generateMeta('video', [
+
+        return view('frontend.video', compact('videos', 'mainVideo', 'page', 'detail'))->with($this->generateMeta('video', [
             'title' => $meta_title,
             'desc' => $meta_desc,
             'keywords' => $meta_keywords,

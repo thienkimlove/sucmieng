@@ -21,6 +21,18 @@
             </a>
         @endforeach
     </div>
+    @if (isset($detail) && $detail == 1)
+        <div class="boxOrther">
+            <h3 class="globalTitle">
+                <a href="{{url('tin-tuc')}}">Bài viết quan tâm</a>
+            </h3>
+            <ul class="listQuestion">
+                @foreach (\App\Site::getRightQuanTam() as $post)
+                <li><a href="{{url($post->slug.'.html')}}">{{$post->title}}</a></li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="boxHot clearFix" id="sidebar">
         <h3 class="globalTitle"><a href="{{url('tin-tuc')}}">Tin nổi bật</a></h3>
         @foreach (\App\Site::getRightFeaturePosts($page) as $post)

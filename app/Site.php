@@ -59,7 +59,19 @@ class Site
 
     public static function getRightIndexVideos()
     {
-        return Video::where('status', true)->latest('created_at')->limit(4)->get();
+        $rightIndexModules = Module::where('key_type', 'index_right')->where('key_content', 'videos')->pluck('key_value')->all();
+        return Video::where('status', true)->whereIn('id', $rightIndexModules)->latest('created_at')->limit(4)->get();
+    }
+
+    public static function getRightQuanTam()
+    {
+        $rightFeatureModules = Module::where('key_type', 'right_quantam')->where('key_content', 'posts')->pluck('key_value')->all();
+
+        return Post::where('status', true)
+            ->whereIn('id', $rightFeatureModules)
+            ->latest('created_at')
+            ->limit(4)
+            ->get();
     }
 
     public static function getRightFeaturePosts($page)

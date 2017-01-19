@@ -1,4 +1,4 @@
-@extends('admin')
+@extends('admin.template')
 
 @section('content')
     <div class="row">
@@ -32,7 +32,6 @@
                     {!! Form::label('content', 'Noi Dung') !!}
                     {!! Form::textarea('content', null, ['class' => 'form-control ckeditor']) !!}
                 </div>
-
 
                 <div class="form-group">
                     {!! Form::label('seo_title', 'SEO title') !!}

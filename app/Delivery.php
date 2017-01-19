@@ -8,4 +8,6 @@ class Delivery extends Model
 {
 
     protected $fillable = ['city', 'content', 'area', 'seo_title', 'keywords', 'desc'];
+
+    public $timestamps = false;
 }

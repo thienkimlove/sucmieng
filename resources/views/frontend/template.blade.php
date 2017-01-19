@@ -84,6 +84,7 @@
 
 @include('frontend.header')
 <section class="boxBanner">
+    @if (isset($page) &&  $page == 'index')
     <div class="boxSlider">
         <div class="owl-carousel" id="slideIndex">
             @foreach (\App\Site::getFrontendBanners()->where('position_id', 1) as $banner)
@@ -95,6 +96,19 @@
             @endforeach
         </div>
     </div>
+    @else
+        <div class="boxSlider">
+            <div class="owl-carousel" id="slideIndex">
+                @foreach (\App\Site::getFrontendBanners()->where('position_id', 7) as $banner)
+                    <div class="item">
+                        <a class="thumb" href="{{$banner->link}}" title="">
+                            <img src="{{url('files', $banner->image)}}" width="1920" height="578"/>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
     <!--//box-Banner-->
 </section>
 @yield('content')
